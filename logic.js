@@ -24,6 +24,15 @@ for (let i = 0; i < batchTemperatures.length; i++) {
     let statusResult = checkMaterialSafety(temp, strength, weldingComplete);
     
     let newRow = document.createElement('tr');
+
+    if (statusResult.startsWith("SUCCESS")) {
+        newRow.classList.add('status-success');
+    } else if (statusResult.startsWith("WARNING")) {
+        newRow.classList.add('status-warning');
+    } else {
+        newRow.classList.add('status-failure');
+    }
+    
     let sampleCell = document.createElement('td');
     sampleCell.textContent = i + 1;
     newRow.appendChild(sampleCell);
